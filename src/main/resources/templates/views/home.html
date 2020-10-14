@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+	<h2>Project</h2>
+
+	<table id="tabla">
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Surname</th>
+			<th>DNI</th>
+			<th>Position</th>
+			<th>Edit User</th>
+			<th>Delete User</th>
+		</tr>
+		<tbody>
+			<tr th:each="us:${usuarios}">
+				<th scope="row" th:text="${us.id}"></th>
+				<td th:text="${us.name}"></td>
+				<td th:text="${us.surname}"></td>
+				<td th:text="${us.dni}"></td>
+				<td th:text="${us.position}"></td>
+				<td>
+					<a th:href="@{/views/users/update/} + ${us.id}" th:text="Edit"></a>
+				</td>
+				<td>
+				<a th:href="@{/views/users/delete/} + ${us.id}" th:text="Delete"
+					onclick="return confirm('seguro de eliminar el registo')"></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br>
+	<br>
+	<br>
+
+	<a th:href="@{preRegister}" th:text="Register"></a>
+	<br>
+</body>
+</html>
